@@ -1,123 +1,113 @@
 <html>
-
-<head>
-  <title>HOMECOMING</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-    }
-    #timer {
-      display: flex;
-      align-items: baseline;
-    }
-    .part {
-      margin: 0px 10px;
-      white-space: nowrap;
-    }
-    .label {
-      font-size: 10px;
-      text-transform: uppercase;
-    }
-
-    @media only screen and (max-width: 670px) {
-      #timer {
+  <head>
+    <title>HOMECOMING</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Jura:600" rel="stylesheet">
+    <style>
+      body {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 44px;
+        font-family: 'Jura', sans-serif;
+      }
+      div#timer {
         display: table;
       }
-      .part {
+      div.part {
         display: table-row;
+        margin: 0px 10px;
+        white-space: nowrap;
       }
-      .part span {
+      div.part span {
         display: table-cell;
       }
-      .part span.value {
+      div.part span.value {
         text-align: right;
       }
-      .part span.label {
+      div.part span.label {
         padding: 5px;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: 600;
       }
-    }
-  </style>
-</head>
-
-<body>
-  <div id='timer'>
-    <div class='part'>
-      <span class='value' id='hour'></span>
-      <span class='label'>hours</span>
+    </style>
+  </head>
+  <body>
+    <div id='timer'>
+      <div class='part'>
+        <span class='value' id='hour'></span>
+        <span class='label'>~hours~</span>
+      </div>
+      <div class='part'>
+        <span class='value' id='minute'></span>
+        <span class='label'>~minutes~</span>
+      </div>
+      <div class='part'>
+        <span class='value' id='second'></span>
+        <span class='label'>~seconds~</span>
+      </div>
+      <div class='part'>
+        <span class='value' id='millisecond'></span>
+        <span class='label'>~milliseconds~</span>
+      </div>
+      <div class='part'>
+        <span class='value' id='microsecond'></span>
+        <span class='label'>~microseconds~</span>
+      </div>
+      <div class='part'>
+        <span class='value' id='nanosecond'></span>
+        <span class='label'>~nanoseconds~</span>
+      </div>
     </div>
-    <div class='part'>
-      <span class='value' id='minute'></span>
-      <span class='label'>minutes</span>
-    </div>
-    <div class='part'>
-      <span class='value' id='second'></span>
-      <span class='label'>seconds</span>
-    </div>
-    <div class='part'>
-      <span class='value' id='millisecond'></span>
-      <span class='label'>milliseconds</span>
-    </div>
-    <div class='part'>
-      <span class='value' id='microsecond'></span>
-      <span class='label'>microseconds</span>
-    </div>
-    <div class='part'>
-      <span class='value' id='nanosecond'></span>
-      <span class='label'>nanoseconds</span>
-    </div>
-  </div>
-  <script type='text/javascript'>
-    const HOUR_IN_MS = 60 * 60 * 1000,
-            MINUTE_IN_MS = 60 * 1000,
-            SECOND_IN_MS = 1000;
-      var now = document.getElementById('now'),
-          then = document.getElementById('then'),
-          diff = document.getElementById('diff'),
-          hour = document.getElementById('hour'),
-          minute = document.getElementById('minute'),
-          second = document.getElementById('second'),
-          millisecond = document.getElementById('millisecond'),
-          microsecond = document.getElementById('microsecond'),
-          nanosecond = document.getElementById('nanosecond');
+    <script type='text/javascript'>
+      const HOUR_IN_MS = 60 * 60 * 1000,
+              MINUTE_IN_MS = 60 * 1000,
+              SECOND_IN_MS = 1000;
+        var now = document.getElementById('now'),
+            then = document.getElementById('then'),
+            diff = document.getElementById('diff'),
+            hour = document.getElementById('hour'),
+            minute = document.getElementById('minute'),
+            second = document.getElementById('second'),
+            millisecond = document.getElementById('millisecond'),
+            microsecond = document.getElementById('microsecond'),
+            nanosecond = document.getElementById('nanosecond');
 
-      var thenDate = new Date(2017, 3, 29, 17, 20, 0, 0);
+        // var thenDate = new Date(2017, 5, 30, 10, 0, 0, 0);
+        var thenDate = new Date(2017, 3, 29, 17, 20, 0, 0);
 
-      function pad(num, size) {
-        var string = num + "";
-        while (string.length < size) string = "0" + string;
-        return string;
-      }
+        function pad(num, size) {
+          var string = num + "";
+          while (string.length < size) string = "0" + string;
+          return string;
+        }
 
-      function update(timestamp) {
-        var hourDiff, minuteDiff, secondDiff;
-        var nowDate = new Date(),
-            diffDate = thenDate - nowDate,
-            delta = thenDate - nowDate;
+        function update(timestamp) {
+          var hourDiff, minuteDiff, secondDiff;
+          var nowDate = new Date(),
+              diffDate = thenDate - nowDate,
+              delta = thenDate - nowDate;
 
-        hourDiff = Math.floor(delta / HOUR_IN_MS);
-        delta -= hourDiff * HOUR_IN_MS;
-        minuteDiff = Math.floor(delta / MINUTE_IN_MS);
-        delta -= minuteDiff * MINUTE_IN_MS;
-        secondDiff = Math.floor(delta / SECOND_IN_MS);
-        delta -= secondDiff * SECOND_IN_MS;
+          hourDiff = Math.floor(delta / HOUR_IN_MS);
+          delta -= hourDiff * HOUR_IN_MS;
+          minuteDiff = Math.floor(delta / MINUTE_IN_MS);
+          delta -= minuteDiff * MINUTE_IN_MS;
+          secondDiff = Math.floor(delta / SECOND_IN_MS);
+          delta -= secondDiff * SECOND_IN_MS;
 
-        hour.innerText = pad(hourDiff, 2);
-        minute.innerText = pad(minuteDiff, 2);
-        second.innerText = pad(secondDiff, 2);
-        millisecond.innerText = pad(delta, 3);
-        microsecond.innerText = pad(Math.floor(Math.random() * 999), 3);
-        nanosecond.innerText = pad(Math.floor(Math.random() * 999), 3);
+          hour.innerText = pad(hourDiff, 2);
+          minute.innerText = pad(minuteDiff, 2);
+          second.innerText = pad(secondDiff, 2);
+          millisecond.innerText = pad(delta, 3);
+          microsecond.innerText = pad(Math.floor(Math.random() * 999), 3);
+          nanosecond.innerText = pad(Math.floor(Math.random() * 999), 3);
+
+          window.requestAnimationFrame(update);
+        }
 
         window.requestAnimationFrame(update);
-      }
-
-      window.requestAnimationFrame(update);
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
