@@ -8,16 +8,33 @@
         height: 100%;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
+        flex-direction: column;
+
+        text-align: center;
         font-size: 44px;
         font-family: 'Jura', sans-serif;
+        text-transform: uppercase;
+        animation: colorchange 50s infinite;
+      }
+      @keyframes colorchange {
+        0%   {background: #ffc8c8;}
+        10%  {background: #ffd4bf;}
+        20%  {background: #ffeebd;}
+        30%  {background: #fdfdbf;}
+        40%  {background: #dfffbf;}
+        50%  {background: #bcd4a4;}
+        60%  {background: #a3cccc;}
+        70%  {background: #aedeff;}
+        80%  {background: #e6ceff;}
+        90%  {background: #eab8c9;}
+        100%  {background: #ffc8c8;}
       }
       div#timer {
         display: table;
       }
       div.part {
         display: table-row;
-        margin: 0px 10px;
         white-space: nowrap;
       }
       div.part span {
@@ -27,14 +44,16 @@
         text-align: right;
       }
       div.part span.label {
-        padding: 5px;
+        padding: 8px;
         font-size: 16px;
-        text-transform: uppercase;
         font-weight: 600;
       }
     </style>
   </head>
   <body>
+    <div id='above'>
+      it's happening in
+    </div>
     <div id='timer'>
       <div class='part'>
         <span class='value' id='hour'></span>
@@ -60,6 +79,9 @@
         <span class='value' id='nanosecond'></span>
         <span class='label'>~nanoseconds~</span>
       </div>
+    </div>
+    <div id='above'>
+      get your party hats on, people
     </div>
     <script type='text/javascript'>
       const HOUR_IN_MS = 60 * 60 * 1000,
