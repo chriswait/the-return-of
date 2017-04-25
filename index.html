@@ -19,7 +19,7 @@
         font-family: 'Jura', sans-serif;
         text-transform: uppercase;
         animation: colorchange 20s infinite;
-        color: #FF6AD5;
+        color: #ff00b7;
       }
       @keyframes colorchange {
         0%  {background: #94D0FF;}
@@ -29,6 +29,15 @@
         80%  {background: #42998e;}
         100%  {background: #94D0FF;}
       }
+      div#above, div#below {
+        animation: pulse 1s infinite;
+      }
+      @keyframes pulse {
+        0% {transform: scale(1);}
+        70% {transform: scale(1.05);}
+        100% {transform: scale(1);}
+      }
+
       div#timer {
         display: table;
       }
